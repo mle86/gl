@@ -1,6 +1,6 @@
 #include "gl.h"
 
-/*  Copyright (C) 2009  Maximilian L. Eul
+/*  Copyright (C) 2013  Maximilian L. Eul
     This file is part of gl.
 
     gl is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ int main (int argc, char** argv) {
 	struct group* g;
 
 	{ // Get command line arguments
-		register char c;
+		register signed char c;
 		while ( (c = getopt(argc, argv, "hVnNrpsv")) != -1 )
 		switch(c) {
 			case 'h': Help(); return 0;
@@ -170,6 +170,6 @@ void Help () { printf(
 
 void Version () { printf(
 	PROGNAME" v"VERSION"\n"
-	"Written by Maximilian Eul <mle@multinion.de>, January 2009.\n"
+	"Written by Maximilian Eul <mle@multinion.de>, June 2013.\n"
 	"\n"
 ); exit(0); }

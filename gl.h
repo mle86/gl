@@ -1,7 +1,7 @@
 #ifndef __GL_H
 #define __GL_H
 
-/*  Copyright (C) 2009  Maximilian L. Eul
+/*  Copyright (C) 2013  Maximilian L. Eul
     This file is part of gl.
 
     gl is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@
 #include <stdbool.h>
 
 
-#define VERSION "1.2"
+#define VERSION "1.21"
 #ifndef PROGNAME
   #define PROGNAME "gl"
 #endif
