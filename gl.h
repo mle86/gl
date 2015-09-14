@@ -1,7 +1,7 @@
 #ifndef __GL_H
 #define __GL_H
 
-/*  Copyright (C) 2013  Maximilian L. Eul
+/*  Copyright (C) 2015  Maximilian L. Eul
     This file is part of gl.
 
     gl is free software: you can redistribute it and/or modify
@@ -18,37 +18,28 @@
     along with gl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <sys/types.h>
-#include <grp.h>
-#include <pwd.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
-#include <stdbool.h>
 
-
-#define VERSION "1.21"
+// Program info:
+#define VERSION "1.3"
 #ifndef PROGNAME
   #define PROGNAME "gl"
 #endif
 
+// Limits:
 #define MAXUSERS 65536
-//#define UIDLEN 5
 
+// ANSI coloring:
 #define M1 "[1m"
 #define M0 "[0m"
 
-#define IsDigit(c)          ( (c >= '0') && (c <= '9') )
-
-#define STR_(s) STRb_(s)
-#define STRb_(s) #s
+// Helper macros:
+#define IsDigit(c) ((c >= '0') && (c <= '9'))
 
 
+// Prototypes:
 int main (int argc, char** argv);
 
-void Help (void);
+void Help    (void);
 void Version (void);
 
 

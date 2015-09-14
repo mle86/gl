@@ -1,6 +1,4 @@
-#include "gl.h"
-
-/*  Copyright (C) 2013  Maximilian L. Eul
+/*  Copyright (C) 2015  Maximilian L. Eul
     This file is part of gl.
 
     gl is free software: you can redistribute it and/or modify
@@ -16,6 +14,19 @@
     You should have received a copy of the GNU General Public License
     along with gl.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+#define _XOPEN_SOURCE 500
+
+#include <sys/types.h>
+#include <grp.h>
+#include <pwd.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
+#include <stdbool.h>
+#include "gl.h"
 
 
 int main (int argc, char** argv) {
