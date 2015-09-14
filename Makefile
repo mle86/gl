@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-O2 -I. -Wall
 BIN=gl
-DEST=/usr/local/bin/gl
+DEST=/usr/local/bin/$(BIN)
 CHOWN=root:root
 SRC=gl.c
 
@@ -9,8 +9,10 @@ MAN=gl.1
 MANDEST=/usr/local/share/man/man1/
 
 
-default:
-	$(CC) $(CFLAGS) -o $(BIN) -DPROGNAME='"$(BIN)"' $(SRC)
+default: $(BIN)
+
+$(BIN): $(SRC)
+	$(CC) $(CFLAGS) -o $@ -DPROGNAME='"$@"' $^
 
 install:
 	strip $(BIN)
@@ -25,4 +27,4 @@ install:
 complete: clean default install
 
 clean:
-	rm -f $(BIN) *.so *.o *.a *~ *.bak
+	rm -f $(BIN) *.o *~ *.bak
