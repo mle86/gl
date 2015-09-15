@@ -30,8 +30,8 @@ void read_arguments (int argc, const char** argv, options_t *o) {
 			case 'h': show_program_help();    exit(0);
 			case 'V': show_program_version(); exit(0);
 
-			case 'n': o->show_IDs = false, o->show_names = false; break;
-			case 'N': o->show_IDs = true,  o->show_names = true;  break;
+			case 'n': o->show_IDs = false, o->show_names = true;  break;
+			case 'N': o->show_IDs = true,  o->show_names = false; break;
 
 			case 'p': o->list_primary_members = true,  o->list_secondary_members = false; break;
 			case 's': o->list_primary_members = false, o->list_secondary_members = true;  break;

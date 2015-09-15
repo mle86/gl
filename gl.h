@@ -32,7 +32,7 @@ typedef struct options {
 
 #define default_options {			\
 	.separator  = '\n',			\
-	.show_IDs   = true,			\
+	.show_IDs   = false,			\
 	.show_names = true,			\
 	.list_primary_members   = true,		\
 	.list_secondary_members = true,		\
