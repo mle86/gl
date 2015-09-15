@@ -1,5 +1,6 @@
 CC=gcc
-CFLAGS=-O2 -I. -Wall
+CFLAGS=-O2 -std=c99 -Wall -Wextra -pedantic
+
 BIN=gl
 BINDEST=/usr/local/bin/
 
