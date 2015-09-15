@@ -46,10 +46,6 @@ typedef struct options {
   #define PROGNAME "gl"
 #endif
 
-// ANSI coloring:
-#define M1 "[1m"
-#define M0 "[0m"
-
 
 int main (int argc, const char** argv);
 

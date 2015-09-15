@@ -53,22 +53,24 @@ void read_arguments (int argc, const char** argv, options_t *o) {
 				o->verbose    = true;
 				break;
 
+			case '0': o->separator = '\0'; break;
+
 			case 'p': o->list_primary_members = true,  o->list_secondary_members = false; break;
 			case 's': o->list_primary_members = false, o->list_secondary_members = true;  break;
 		}
 }
 
 void show_program_help () { printf(
-	M1"%s"M0" lists all groups or all members of one group.\n"
-	"Usage: "M1"%s"M0" ["M1"OPTIONS"M0"] ["M1"GROUP"M0"]\n"
+	"%s lists all groups or all members of one group.\n"
+	"Usage: %s [OPTIONS] [GROUP]\n"
 	"Options:\n"
-	"  "M1"-n"M0", "M1"--names     "M0"Print group/member names only (default).\n"
-	"  "M1"-N"M0", "M1"--ids       "M0"Print group/member IDs only.\n"
-	"  "M1"-p"M0", "M1"--primary   "M0"Print primary group members only.\n"
-	"  "M1"-s"M0", "M1"--secondary "M0"Print secondary group members only.\n"
-	"  "M1"-v"M0", "M1"--verbose   "M0"Separate primary/secondary members, show names and IDs.\n"
-	"  "M1"-h"M0", "M1"--help      "M0"This help.\n"
-	"  "M1"-V"M0", "M1"--version   "M0"Program version information.\n"
+	"  -n, --names     Print group/member names only (default).\n"
+	"  -N, --ids       Print group/member IDs only.\n"
+	"  -p, --primary   Print primary group members only.\n"
+	"  -s, --secondary Print secondary group members only.\n"
+	"  -v, --verbose   Separate primary/secondary members, show names and IDs.\n"
+	"  -h, --help      This help.\n"
+	"  -V, --version   Program version information.\n"
 	"\n",
 	PROGNAME, PROGNAME
 ); }
