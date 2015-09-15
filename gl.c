@@ -54,7 +54,6 @@ int main (int argc, char** argv) {
 			case 'N': ShowNames=false; ShowIDs=true;  break;
 			case 'p': ShowPrimaryMembers=true;  ShowSecondaryMembers=false; break;
 			case 's': ShowPrimaryMembers=false; ShowSecondaryMembers=true;  break;
-			case 'r': Break=false; break;
 			case 'v': Verbose=true; break;
 		}
 	}
@@ -92,8 +91,7 @@ int main (int argc, char** argv) {
 					continue;
 
 				printf(fmt, u->pw_uid, u->pw_name);
-				if (Break)
-					printf("\n");
+				printf("\n");
 			}
 			endpwent();
 		}
@@ -117,16 +115,14 @@ int main (int argc, char** argv) {
 				}
 
 				printf(fmt, u->pw_uid, *m);
-				if (Break)
-					printf("\n");
+				printf("\n");
 
 				skip:
 				m++;
 			}
 		}
 
-		if (! Break) // && *(g->gr_mem))
-			printf("\n");
+		printf("\n");
 		exit(0);
 	}
 
