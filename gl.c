@@ -48,10 +48,21 @@ int main (int argc, const char** argv) {
 			return 1;
 		}
 
-		if (options.list_primary_members)
+		if (options.list_primary_members) {
+			if (options.verbose)
+				printf("Primary group members:\n");
+
 			list_primary_group_members(g);
-		if (options.list_secondary_members)
+		}
+
+		if (options.list_secondary_members) {
+			if (options.verbose && options.list_primary_members)
+				printf("\n");
+			if (options.verbose)
+				printf("Secondary group members:\n");
+
 			list_secondary_group_members(g);
+		}
 	}
 
 	return 0;
