@@ -1,28 +1,23 @@
 CC=gcc
 CFLAGS=-O2 -I. -Wall
 BIN=gl
-DEST=/usr/local/bin/$(BIN)
-CHOWN=root:root
+BINDEST=/usr/local/bin/
 
 MAN=gl.1
 MANDEST=/usr/local/share/man/man1/
 
 
-default: $(BIN)
+all: $(BIN)
 
 $(BIN): gl.o aux.o group.o
 
-install:
+install: $(BIN)
 	strip $(BIN)
-	cp $(BIN) $(DEST)
-	chown $(CHOWN) $(DEST)
+	cp $(BIN) $(BINDEST)
 	
 	mkdir -p $(MANDEST)
 	cp $(MAN) $(MANDEST)
-	chown $(CHOWN) $(MAN)
-	chmod 0644 $(MAN)
-
-complete: clean default install
+	gzip -f $(MANDEST)/$(MAN)
 
 clean:
 	rm -f $(BIN) *.o *~ *.bak
