@@ -3,7 +3,6 @@ CFLAGS=-O2 -I. -Wall
 BIN=gl
 DEST=/usr/local/bin/$(BIN)
 CHOWN=root:root
-SRC=gl.c
 
 MAN=gl.1
 MANDEST=/usr/local/share/man/man1/
@@ -11,8 +10,7 @@ MANDEST=/usr/local/share/man/man1/
 
 default: $(BIN)
 
-$(BIN): $(SRC)
-	$(CC) $(CFLAGS) -o $@ -DPROGNAME='"$@"' $^
+$(BIN): gl.o aux.o group.o
 
 install:
 	strip $(BIN)
