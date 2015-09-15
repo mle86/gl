@@ -31,13 +31,16 @@
 
 int main (int argc, char** argv) {
 
-	bool Break = true,
-	     ShowIDs = true,
-	     ShowNames = true,
-	     ShowPrimaryMembers = true,
-	     ShowSecondaryMembers = true,
-	     RemoveDuplicates = false,
-	     Verbose = false;
+	bool Break	= true,  // show linebreaks after each user?
+
+	     ShowIDs	= true,  // show numerical user IDs?
+	     ShowNames	= true,  // show user names?
+
+	     ShowPrimaryMembers		= true,  // show primary group members?
+	     ShowSecondaryMembers	= true,  // show secondary group members?
+
+	     RemoveDuplicates		= false,  // remove duplicate entries?
+	     Verbose			= false;  // show extra output?
 	
 	int* KnownUsers;
 	unsigned long int ku = 0;
@@ -67,7 +70,7 @@ int main (int argc, char** argv) {
 			RemoveDuplicates = false;
 	}
 
-	char* const fmt =
+	const char* fmt =
 		(ShowIDs && ShowNames) ?
 		  (Verbose ? (" (%1$i) "M1"%2$s"M0) : " (%1$i)%2$s") : // id & name
 		(ShowIDs ?
@@ -164,7 +167,7 @@ int main (int argc, char** argv) {
 }
 
 void Help () { printf(
-	M1 PROGNAME M0"  lists all groups or all members of one group.\n"
+	M1 "%s" M0"  lists all groups or all members of one group.\n"
 	"Usage: "M1 PROGNAME M0" ["M1"OPTIONS"M0"] ["M1"GROUP"M0"]\n"
 	"Options:\n"
 	M1"  -n    "M0"Print names only instead of names and IDs of groups/members.\n"
@@ -176,11 +179,13 @@ void Help () { printf(
 	M1"  -r    "M0"No linebreaks after each group/member.\n"
 	M1"  -h    "M0"This help.\n"
 	M1"  -V    "M0"Program version information.\n"
-	"\n"
+	"\n",
+	PROGNAME
 ); exit(0); }
 
 void Version () { printf(
 	PROGNAME" v"VERSION"\n"
-	"Written by Maximilian Eul <mle@multinion.de>, June 2013.\n"
+	"Written by Maximilian Eul <maximilian@eul.cc>, September 2015.\n"
 	"\n"
 ); exit(0); }
+
