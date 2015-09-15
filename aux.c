@@ -80,6 +80,7 @@ void show_program_help () { printf(
 void show_program_version () { printf(
 	PROGNAME" v"VERSION"\n"
 	"Written by Maximilian Eul <maximilian@eul.cc>, September 2015.\n"
+	"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n"
 	"\n"
 ); }
 
