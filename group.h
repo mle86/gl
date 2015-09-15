@@ -15,45 +15,16 @@
     along with gl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef _GL_H
-#define _GL_H
+#ifndef _GROUP_H
+#define _GROUP_H
 
-#include <stdbool.h>
-
-
-typedef struct options {
-	char separator;
-	bool show_IDs;
-	bool show_names;
-	bool list_primary_members;
-	bool list_secondary_members;
-	bool verbose;
-} options_t;
-
-#define default_options {			\
-	.separator  = '\n',			\
-	.show_IDs   = true,			\
-	.show_names = true,			\
-	.list_primary_members   = true,		\
-	.list_secondary_members = true,		\
-	.verbose = false,			\
-}
+#include <grp.h>
 
 
-// Program info:
-#define VERSION "1.3"
-#ifndef PROGNAME
-  #define PROGNAME "gl"
-#endif
-
-// ANSI coloring:
-#define M1 "[1m"
-#define M0 "[0m"
+void list_all_groups (void);
+void list_primary_group_members (const struct group* g);
+void list_secondary_group_members (const struct group* g);
+const struct group* find_group (const char* input);
 
 
-int main (int argc, const char** argv);
-
-void print_entry (const char* name, unsigned long int id);
-
-
-#endif // _GL_H
+#endif  // _GROUP_H

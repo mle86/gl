@@ -1,11 +1,11 @@
-.TH GL "1" "June 2013" "gl 1.21" ""
+.TH GL "1" "September 2015" "gl 1.3" ""
 
 .SH NAME
 gl \- group listing and group member listing
 .SH SYNOPSIS
 \fBgl\fR
 [\fB-hV\fR]
-[\fB-nNrpsv\fR]
+[\fB-nNpsv\fR]
 [\fIGROUP\fR]
 .SH DESCRIPTION
 \fBgl\fR is a command line tool which lists all members of the speficied user group.
@@ -22,10 +22,6 @@ Print the IDs of groups/group members only.
 .br
 Usually, \fBgl\fR prints their names and IDs.
 .TP
-.B \-r
-Raw output:
-Separate output with spaces instead of linebreaks.
-.TP
 .B \-p
 When listing group members, list primary members only.
 .br
@@ -39,7 +35,6 @@ Usually, \fBgl\fR lists primary and secondary members.
 .B \-v
 Verbose mode:
 When listing group members, separate the primary and secondary member list.
-Also turns on ansi highlighting for group/member names.
 .TP
 .B \-h
 \fBgl\fR will print a short help summary and exit.
@@ -49,6 +44,6 @@ Also turns on ansi highlighting for group/member names.
 .SH EXAMPLE
 .TP
 gl -v staff
-Lists all members of the \fBstaff\fR group in a nicely formatted list.
+Lists all members of the \fBstaff\fR group.
 .SH AUTHOR
-Maximilian Eul <mle at multinion dot de>
+Maximilian Eul <maximilian at eul dot cc>
