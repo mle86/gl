@@ -39,11 +39,7 @@ int main (int argc, char** argv) {
 	     ShowPrimaryMembers		= true,  // show primary group members?
 	     ShowSecondaryMembers	= true,  // show secondary group members?
 
-	     RemoveDuplicates		= false,  // remove duplicate entries?
 	     Verbose			= false;  // show extra output?
-	
-	int* KnownUsers;
-	unsigned long int ku = 0;
 
 	struct passwd* u;
 	struct group* g;
@@ -61,13 +57,6 @@ int main (int argc, char** argv) {
 			case 'r': Break=false; break;
 			case 'v': Verbose=true; break;
 		}
-	}
-
-	if (RemoveDuplicates) {
-		KnownUsers = malloc(sizeof(int) * MAXUSERS);
-		if (! KnownUsers)
-			// Out of memory, but carry on anyways.
-			RemoveDuplicates = false;
 	}
 
 	const char* fmt =
@@ -101,8 +90,6 @@ int main (int argc, char** argv) {
 			while(( u = getpwent() )) {
 				if (u->pw_gid != gid)
 					continue;
-				if (RemoveDuplicates && ShowSecondaryMembers && ku<MAXUSERS)
-					KnownUsers[ku++] = u->pw_uid;
 
 				printf(fmt, u->pw_uid, u->pw_name);
 				if (Break)
@@ -126,13 +113,6 @@ int main (int argc, char** argv) {
 					if (! u) {
 						fprintf(stderr, PROGNAME": getpwnam(%s) failed: %s\n", *m, errno ? strerror(errno) : "user not found");
 						goto skip;
-					}
-					if (ShowPrimaryMembers && ku) {
-						uid_t test = u->pw_uid;
-						register unsigned long int i;
-						for (i=0; i<ku; i++)
-							if (KnownUsers[i] == test)
-								goto skip;
 					}
 				}
 
