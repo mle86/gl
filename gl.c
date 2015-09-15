@@ -28,40 +28,51 @@
 #include <stdbool.h>
 #include "gl.h"
 
+struct options {
+	char separator;
+	bool show_IDs;
+	bool show_names;
+	bool list_primary_members;
+	bool list_secondary_members;
+	bool verbose;
+} const default_options = {
+	.separator  = '\n',
+	.show_IDs   = true,
+	.show_names = true,
+	.list_primary_members   = true,
+	.list_secondary_members = true,
+	.verbose = false,
+};
 
-int main (int argc, char** argv) {
+static void read_arguments (int argc, const char** argv, struct options *o) {
+	register signed char c;
+	while ((c = getopt(argc, (char*const*)argv, "hVnNpsv")) != -1)
+		switch(c) {
+			case 'h': Help();    exit(0);
+			case 'V': Version(); exit(0);
 
-	bool Break	= true,  // show linebreaks after each user?
+			case 'n': o->show_IDs = false, o->show_names = false; break;
+			case 'N': o->show_IDs = true,  o->show_names = true;  break;
 
-	     ShowIDs	= true,  // show numerical user IDs?
-	     ShowNames	= true,  // show user names?
+			case 'p': o->list_primary_members = true,  o->list_secondary_members = false; break;
+			case 's': o->list_primary_members = false, o->list_secondary_members = true;  break;
 
-	     ShowPrimaryMembers		= true,  // show primary group members?
-	     ShowSecondaryMembers	= true,  // show secondary group members?
+			case 'v': o->verbose = true; break;
+		}
+}
 
-	     Verbose			= false;  // show extra output?
 
+int main (int argc, const char** argv) {
 	struct passwd* u;
 	struct group* g;
 
-	{ // Get command line arguments
-		register signed char c;
-		while ( (c = getopt(argc, argv, "hVnNrpsv")) != -1 )
-		switch(c) {
-			case 'h': Help(); return 0;
-			case 'V': Version(); return 0;
-			case 'n': ShowNames=true;  ShowIDs=false; break;
-			case 'N': ShowNames=false; ShowIDs=true;  break;
-			case 'p': ShowPrimaryMembers=true;  ShowSecondaryMembers=false; break;
-			case 's': ShowPrimaryMembers=false; ShowSecondaryMembers=true;  break;
-			case 'v': Verbose=true; break;
-		}
-	}
+	struct options options = default_options;
+	read_arguments(argc, argv, &options);
 
 	const char* fmt =
-		(ShowIDs && ShowNames) ?
-		  (Verbose ? (" (%1$i) "M1"%2$s"M0) : " (%1$i)%2$s") : // id & name
-		(ShowIDs ?
+		(options.show_IDs && options.show_names) ?
+		  (options.verbose ? (" (%1$i) "M1"%2$s"M0) : " (%1$i)%2$s") : // id & name
+		(options.show_IDs ?
 		   " %1$i" : // id
 		   " %2$s"); // name
 
@@ -81,8 +92,8 @@ int main (int argc, char** argv) {
 		}
 		gid = g->gr_gid;
 
-		if (ShowPrimaryMembers) {
-			if (Verbose)
+		if (options.list_primary_members) {
+			if (options.verbose)
 				printf("Primary members:\n");
 
 			setpwent();
@@ -96,9 +107,9 @@ int main (int argc, char** argv) {
 			endpwent();
 		}
 
-		if (ShowSecondaryMembers) {
-			if (Verbose)
-				printf("%sSecondary members:\n", ShowPrimaryMembers ? "\n" : "");
+		if (options.list_secondary_members) {
+			if (options.verbose)
+				printf("%sSecondary members:\n", options.list_primary_members ? "\n" : "");
 
 			m = g->gr_mem;
 			if (! m) {
@@ -106,7 +117,7 @@ int main (int argc, char** argv) {
 				exit(1);
 			}
 			while( *m ) {
-				if (ShowIDs || ShowPrimaryMembers) {
+				if (options.show_IDs || options.list_primary_members) {
 					u = getpwnam(*m);
 					if (! u) {
 						fprintf(stderr, PROGNAME": getpwnam(%s) failed: %s\n", *m, errno ? strerror(errno) : "user not found");
@@ -132,15 +143,14 @@ int main (int argc, char** argv) {
 	while(( g = getgrent() )){
 
 		printf(fmt, g->gr_gid, g->gr_name);
-		if (Break)
-			printf("\n");
+		printf("\n");
 	}
 	endgrent();
 
-	if (! Break)
-		printf("\n");
+	printf("\n");
 	exit(0);
 }
+
 
 void Help () { printf(
 	M1 "%s" M0"  lists all groups or all members of one group.\n"
