@@ -8,7 +8,7 @@ Version 1.3, 2015-09
 ### Description
 
 gl is a command line tool which lists all members of the speficied user group.
-\
+
 If no _GROUP_ (name or numerical id) is given, gl lists all groups.
 
 
