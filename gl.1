@@ -5,7 +5,7 @@ gl \- group listing and group member listing
 .SH SYNOPSIS
 \fBgl\fR
 [\fB-hV\fR]
-[\fB-nNpsv\fR]
+[\fB-nNpsv0\fR]
 [\fIGROUP\fR]
 .SH DESCRIPTION
 \fBgl\fR is a command line tool which lists all members of the speficied user group.
@@ -36,6 +36,10 @@ Usually, \fBgl\fR lists primary and secondary members.
 Verbose mode:
 When listing group members, separate the primary and secondary member list.
 Also show names and numerical IDs.
+.TP
+.B \-0, \-\-print0
+Output lines will be separated with NUL instead on linebreaks.
+Suitable for \fBxargs\fR' \fB--null\fR input option.
 .TP
 .B \-h, \-\-help
 \fBgl\fR will print a short help summary and exit.

@@ -26,7 +26,7 @@
 
 
 void read_arguments (int argc, const char** argv, options_t *o) {
-	const char* short_options = "hVnNpsv";
+	const char* short_options = "hVnNpsv0";
 	const struct option long_options [] = {
 		{ "help",	0, NULL, 'h' },
 		{ "version",	0, NULL, 'V' },
@@ -35,6 +35,7 @@ void read_arguments (int argc, const char** argv, options_t *o) {
 		{ "ids",	0, NULL, 'N' },
 		{ "names",	0, NULL, 'n' },
 		{ "verbose",	0, NULL, 'v' },
+		{ "print0",	0, NULL, '0' },
 		{ 0,0,0,0 }
 	};
 
@@ -69,6 +70,7 @@ void show_program_help () { printf(
 	"  -p, --primary   Print primary group members only.\n"
 	"  -s, --secondary Print secondary group members only.\n"
 	"  -v, --verbose   Separate primary/secondary members, show names and IDs.\n"
+	"  -0, --print0    Separate output lines with NUL instead of linebreaks.\n"
 	"  -h, --help      This help.\n"
 	"  -V, --version   Program version information.\n"
 	"\n",
