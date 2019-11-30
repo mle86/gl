@@ -1,4 +1,4 @@
-/*  Copyright (C) 2015  Maximilian L. Eul
+/*  Copyright (C) 2015,2019  Maximilian L. Eul
     This file is part of gl.
 
     gl is free software: you can redistribute it and/or modify
@@ -79,7 +79,7 @@ void show_program_help () { printf(
 
 void show_program_version () { printf(
 	PROGNAME" v"VERSION"\n"
-	"Written by Maximilian Eul <maximilian@eul.cc>, September 2015.\n"
+	"Written by Maximilian Eul <maximilian@eul.cc>, November 2019.\n"
 	"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n"
 	"\n"
 ); }

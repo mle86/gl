@@ -1,7 +1,7 @@
 # Changelog
 
 
-#### v1.3.1, 2019-11
+#### v1.3.1, 2019-11-30
 
  - suppress useless error messages
 

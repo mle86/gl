@@ -1,4 +1,4 @@
-/*  Copyright (C) 2015  Maximilian L. Eul
+/*  Copyright (C) 2015,2019  Maximilian L. Eul
     This file is part of gl.
 
     gl is free software: you can redistribute it and/or modify

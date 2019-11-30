@@ -1,6 +1,6 @@
 # gl(1) - group listing and group member listing
 
-Version 1.3, September 2015
+Version 1.3.1, November 2019
 
 ```
 gl [-hV] [-nNpsv0] [GROUP]
