@@ -66,9 +66,9 @@ It mostly conforms to SUSv3 (*POSIX.1-2001*),
 except that it's using GNU libc's *getopt_long()* function.
 
 Tested with:
-* _gcc_ 4.9.1
-* _libc6_ 2.19
-* _GNU Make_ 4.0
+* _gcc_ 4.9.1, 7.4.0
+* _libc6_ 2.19, 2.27
+* _GNU Make_ 4.0, 4.1
 
 
 
