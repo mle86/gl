@@ -75,7 +75,7 @@ This will copy the binary to /usr/local/bin/gl
 and the manpage to /usr/local/share/man/man1/gl.1.gz.
 
 
-### Standards and depencies
+### Standards and dependencies
 
 gl is written in C99 (*ISO/IEC 9899:1999*).
 It mostly conforms to SUSv3 (*POSIX.1-2001*),
