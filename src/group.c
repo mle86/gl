@@ -36,6 +36,7 @@ void list_all_groups (void) {
 	struct group* g;
 	while ((g = getgrent())) {
 		print_entry(g->gr_name, (unsigned long int)g->gr_gid);
+		errno = 0;
 	}
 
 	if (errno)
@@ -52,6 +53,7 @@ void list_primary_group_members (const struct group* g) {
 	while ((u = getpwent())) {
 		if (u->pw_gid == g->gr_gid)
 			print_entry(u->pw_name, (unsigned long int)u->pw_uid);
+		errno = 0;
 	}
 
 	if (errno)
