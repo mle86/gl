@@ -12,6 +12,13 @@ MANDEST=/usr/local/share/man/man1/
 
 all: $(BIN)
 
+README.md: man/gl.1 man/*.md
+	git submodule update --init man/man-to-md/
+	perl man/man-to-md.pl --word gl \
+		--paste-section-after 'EXAMPLE:Installation.md' \
+		--paste-section-after 'EXAMPLE:Standards and Dependencies.md' \
+		<$< >$@
+
 $(BIN): src/gl.o src/aux.o src/group.o
 	$(LD) $(LDFLAGS) -o $@ $^
 
